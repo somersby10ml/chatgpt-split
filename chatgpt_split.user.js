@@ -58,15 +58,20 @@
 
   if (options.fullText) {
     // flex flex-col h-full text-sm dark:bg-gray-800
-    setInterval(() => {
-      const targets = document.getElementsByClassName('flex p-4 gap-4 text-base md:gap-6 md:max-w-2xl lg:max-w-[38rem] xl:max-w-3xl md:py-6 lg:px-0 m-auto')
+    const fullText = () => {
+      const targets = document.getElementsByClassName('flex p-4 gap-4 text-base md:gap-6 md:max-w-2xl lg:max-w-[38rem] xl:max-w-3xl md:py-6 lg:px-0 m-auto');
       const classesToRemove = ['md:gap-6', 'md:max-w-2xl', 'lg:max-w-[38rem]', 'xl:max-w-3xl', 'md:py-6', 'lg:px-0'];
-      for (const target of targets) {
+      for (let i=targets.length-1; i>=0; i--) {
+        const target = targets[i];
         for (const className of classesToRemove) {
           target.classList.remove(className);
         }
       }
+    }
+    setInterval(() => {
+      fullText();
     }, 2000)
+    fullText();
   }
 
   if (options.split) {
@@ -96,11 +101,5 @@
         sizes: [10, 75],
       })
     }, 3000);
-
   }
 })();
-
-
-
-
-
